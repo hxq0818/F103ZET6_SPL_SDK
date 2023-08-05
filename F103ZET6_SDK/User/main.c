@@ -8,7 +8,7 @@
 //#include "task.h"
 
 #include "RTOS_text.h"
-
+#include "time6.h"
 
 
 
@@ -24,6 +24,8 @@ int main()
 	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);//设置系统中断优先级分组4
 	LED_Init();
 	USART1_Init(115200);
+	
+	TIM6_Init(1000-1,72-1);  //定时1ms
 	
 	FreeRTOS_start_task();
 	

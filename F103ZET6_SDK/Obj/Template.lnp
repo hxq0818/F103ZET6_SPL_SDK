@@ -12,6 +12,7 @@
 ".\obj\core_cm3.o"
 ".\obj\led.o"
 ".\obj\usart.o"
+".\obj\time6.o"
 ".\obj\system.o"
 ".\obj\systick.o"
 ".\obj\croutine.o"

@@ -324,7 +324,7 @@
             <wLevel>2</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
-            <uC99>0</uC99>
+            <uC99>1</uC99>
             <uGnu>0</uGnu>
             <useXO>0</useXO>
             <v6Lang>1</v6Lang>
@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F10X_HD</Define>
               <Undefine></Undefine>
-              <IncludePath>.\User;.\Libraries\CMSIS;.\Libraries\STM32F10x_StdPeriph_Driver\inc;.\UserModule\APP\led;.\UserModule\APP\usart;.\UserModule\Public;.\UserModule\FreeRTOS\include;.\UserModule\FreeRTOS\portable\RVDS\ARM_CM3;.\UserModule\FreeRTOS\FreeRTOS_app</IncludePath>
+              <IncludePath>.\User;.\Libraries\CMSIS;.\Libraries\STM32F10x_StdPeriph_Driver\inc;.\UserModule\APP\led;.\UserModule\APP\usart;.\UserModule\Public;.\UserModule\FreeRTOS\include;.\UserModule\FreeRTOS\portable\RVDS\ARM_CM3;.\UserModule\FreeRTOS\FreeRTOS_app;.\UserModule\APP\time</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -466,6 +466,11 @@
               <FileName>usart.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\UserModule\APP\usart\usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>time6.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\UserModule\APP\time\time6.c</FilePath>
             </File>
           </Files>
         </Group>

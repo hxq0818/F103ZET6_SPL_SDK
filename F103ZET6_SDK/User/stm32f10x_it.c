@@ -23,8 +23,9 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x_it.h"
-#include "FreeRTOS.h"		//FreeRTOS使用		  
-#include "task.h" 
+/*! 将Free RTOS系统定时，放到TIME6中调用!*/
+//#include "FreeRTOS.h"		//FreeRTOS使用		  
+//#include "task.h" 
 /** @addtogroup STM32F10x_StdPeriph_Template
   * @{
   */
@@ -127,7 +128,7 @@ void DebugMon_Handler(void)
 //void PendSV_Handler(void)
 //{
 //}
-extern void xPortSysTickHandler(void);
+
 /**
   * @brief  This function handles SysTick Handler.
   * @param  None
@@ -135,10 +136,6 @@ extern void xPortSysTickHandler(void);
   */
 void SysTick_Handler(void)
 {
-	if(xTaskGetSchedulerState()!=taskSCHEDULER_NOT_STARTED)//系统已经运行
-    {
-        xPortSysTickHandler();	
-    }
 }
 
 /******************************************************************************/
