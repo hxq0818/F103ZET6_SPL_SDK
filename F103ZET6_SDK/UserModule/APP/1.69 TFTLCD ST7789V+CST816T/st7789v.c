@@ -8,7 +8,7 @@
 #include "st7789v.h"
 #include "font.h"
 #include "SysTick.h"
-#include "usart.h"
+
 
 /*记录上一次传输数据长度*/
 uint16_t Tx_Len=0;
@@ -62,17 +62,8 @@ void ST7789V_SPIInit(void)
 void ST7789V_DMAInit(uint32_t Madr,uint32_t DMA_MemoryInc,uint32_t DataSize,uint16_t Len)
 {
 	DMA_InitTypeDef  DMA_InitStructure;
-	NVIC_InitTypeDef NVIC_InitStructure;
 	//使能 DMA 控制器（DMA1 或 DMA2）时钟
 	RCC_AHBPeriphClockCmd(ST7789V_RCC_DMA, ENABLE);//DMA1时钟使能 
-	
-		//DMA1通道6 NVIC 配置
-	NVIC_InitStructure.NVIC_IRQChannel = DMA1_Channel3_IRQn;		//NVIC通道设置
-	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 3 ;		//抢占优先级
-	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;				//子优先级
-	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;					//IRQ通道使能
-	NVIC_Init(&NVIC_InitStructure);									//根据指定的参数初始化VIC寄存器
-
 	
 	DMA_DeInit(ST7789V_DMA_SPIX_TX_CH);
 	
@@ -119,10 +110,6 @@ void ST7789V_DMAInit(uint32_t Madr,uint32_t DMA_MemoryInc,uint32_t DataSize,uint
 	DMA_InitStructure.DMA_M2M = DMA_M2M_Disable; 
 	//初始化DMA 
 	DMA_Init(ST7789V_DMA_SPIX_TX_CH, &DMA_InitStructure);
-	
-	DMA_ITConfig(ST7789V_DMA_SPIX_TX_CH, DMA_IT_TC, ENABLE);
-
-
 }
 
 /*
@@ -482,37 +469,37 @@ void ST7789V_FillLcdScreen(uint16_t Start_X,uint16_t Start_Y,uint16_t End_X,uint
 			ST7789V_NSS_LOW();
 			ST7789V_DMAInit((uint32_t)(&Color),DMA_MemoryInc_Disable,DMA_MemoryDataSize_HalfWord,num1);
 			ST7789V_DMAEnable(num1);
-//			while(1)
-//			{
-//				if(DMA_GetFlagStatus(DMA1_FLAG_TC3)!=RESET)//等待通道4传输完成
-//				{
-//					DMA_ClearFlag(DMA1_FLAG_TC3);//清除通道3传输完成标志
-//					break;
-//				}
-//			}
+			while(1)
+			{
+				if(DMA_GetFlagStatus(DMA1_FLAG_TC3)!=RESET)//等待通道4传输完成
+				{
+					DMA_ClearFlag(DMA1_FLAG_TC3);//清除通道3传输完成标志
+					break;
+				}
+			}
 			ST7789V_DMAEnable(num2);
-//			while(1)
-//			{
-//				if(DMA_GetFlagStatus(DMA1_FLAG_TC3)!=RESET)//等待通道4传输完成
-//				{
-//					DMA_ClearFlag(DMA1_FLAG_TC3);//清除通道3传输完成标志
-//					break;
-//				}
-//			}
+			while(1)
+			{
+				if(DMA_GetFlagStatus(DMA1_FLAG_TC3)!=RESET)//等待通道4传输完成
+				{
+					DMA_ClearFlag(DMA1_FLAG_TC3);//清除通道3传输完成标志
+					break;
+				}
+			}
 		}
 		else
 		{
 			ST7789V_NSS_LOW();
 			ST7789V_DMAInit((uint32_t)(&Color),DMA_MemoryInc_Disable,DMA_MemoryDataSize_HalfWord,num);
 			ST7789V_DMAEnable(num);
-//			while(1)
-//			{
-//				if(DMA_GetFlagStatus(DMA1_FLAG_TC3)!=RESET)//等待通道4传输完成
-//				{
-//					DMA_ClearFlag(DMA1_FLAG_TC3);//清除通道3传输完成标志
-//					break;
-//				}
-//			}
+			while(1)
+			{
+				if(DMA_GetFlagStatus(DMA1_FLAG_TC3)!=RESET)//等待通道4传输完成
+				{
+					DMA_ClearFlag(DMA1_FLAG_TC3);//清除通道3传输完成标志
+					break;
+				}
+			}
 		}
 		ST7789V_NSS_HIGH();
 		ST7789V_SPIX->CR1=~ST7789V_SPIX->CR1;
@@ -993,38 +980,38 @@ void ST7789V_LcdShowPicture(uint16_t X,uint16_t Y,uint16_t Width,uint16_t Length
 			ST7789V_NSS_LOW();
 			ST7789V_DMAInit((uint32_t)Pic,DMA_MemoryInc_Enable,DMA_MemoryDataSize_Byte,num1);
 			ST7789V_DMAEnable(num1);
-//			while(1)
-//			{
-//				if(DMA_GetFlagStatus(DMA1_FLAG_TC3)!=RESET)//等待通道4传输完成
-//				{
-//					DMA_ClearFlag(DMA1_FLAG_TC3);//清除通道3传输完成标志
-//					break;
-//				}
-//			}
+			while(1)
+			{
+				if(DMA_GetFlagStatus(DMA1_FLAG_TC3)!=RESET)//等待通道4传输完成
+				{
+					DMA_ClearFlag(DMA1_FLAG_TC3);//清除通道3传输完成标志
+					break;
+				}
+			}
 			ST7789V_DMA_SPIX_TX_CH->CMAR = (uint32_t)((uint8_t*)(Pic+65535));
 			ST7789V_DMAEnable(num2);
-//			while(1)
-//			{
-//				if(DMA_GetFlagStatus(DMA1_FLAG_TC3)!=RESET)//等待通道4传输完成
-//				{
-//					DMA_ClearFlag(DMA1_FLAG_TC3);//清除通道3传输完成标志
-//					break;
-//				}
-//			}
+			while(1)
+			{
+				if(DMA_GetFlagStatus(DMA1_FLAG_TC3)!=RESET)//等待通道4传输完成
+				{
+					DMA_ClearFlag(DMA1_FLAG_TC3);//清除通道3传输完成标志
+					break;
+				}
+			}
 		}
 		else
 		{
 			ST7789V_NSS_LOW();
 			ST7789V_DMAInit((uint32_t)Pic,DMA_MemoryInc_Enable,DMA_MemoryDataSize_Byte,Length*Width*2);
 			ST7789V_DMAEnable(Length*Width*2);
-//			while(1)
-//			{
-//				if(DMA_GetFlagStatus(DMA1_FLAG_TC3)!=RESET)//等待通道4传输完成
-//				{
-//					DMA_ClearFlag(DMA1_FLAG_TC3);//清除通道3传输完成标志
-//					break;
-//				}
-//			}
+			while(1)
+			{
+				if(DMA_GetFlagStatus(DMA1_FLAG_TC3)!=RESET)//等待通道4传输完成
+				{
+					DMA_ClearFlag(DMA1_FLAG_TC3);//清除通道3传输完成标志
+					break;
+				}
+			}
 		}
 		ST7789V_NSS_HIGH();
 	}
@@ -1044,12 +1031,3 @@ void ST7789V_LcdShowPicture(uint16_t X,uint16_t Y,uint16_t Width,uint16_t Length
 	}
 	#endif
 }
-void DMA1_Channel3_IRQHandler()
-{
-	printf("%s\r\n",__func__);
-	if(DMA_GetFlagStatus(DMA1_FLAG_TC3)!=RESET)//等待通道4传输完成
-	{
-		DMA_ClearFlag(DMA1_FLAG_TC3);//清除通道3传输完成标志
-	}
-}
-

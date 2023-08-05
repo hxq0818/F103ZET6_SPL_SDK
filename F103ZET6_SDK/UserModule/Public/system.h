@@ -11,6 +11,7 @@
 #define BITBAND(addr, bitnum) ((addr & 0xF0000000)+0x2000000+((addr &0xFFFFF)<<5)+(bitnum<<2)) 
 #define MEM_ADDR(addr)  *((volatile unsigned long  *)(addr)) 
 #define BIT_ADDR(addr, bitnum)   MEM_ADDR(BITBAND(addr, bitnum)) 
+
 //IO口地址映射
 #define GPIOA_ODR_Addr    (GPIOA_BASE+12) //0x4001080C 
 #define GPIOB_ODR_Addr    (GPIOB_BASE+12) //0x40010C0C 
@@ -50,6 +51,7 @@
 
 #define PGout(n)   BIT_ADDR(GPIOG_ODR_Addr,n)  //输出 
 #define PGin(n)    BIT_ADDR(GPIOG_IDR_Addr,n)  //输入
+
 
 
 #endif

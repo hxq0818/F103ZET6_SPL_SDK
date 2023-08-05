@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F10X_HD</Define>
               <Undefine></Undefine>
-              <IncludePath>.\User;.\Libraries\CMSIS;.\Libraries\STM32F10x_StdPeriph_Driver\inc;.\UserModule\APP\led;.\UserModule\APP\usart;.\UserModule\Public;.\UserModule\FreeRTOS\include;.\UserModule\FreeRTOS\portable\RVDS\ARM_CM3;.\UserModule\FreeRTOS\FreeRTOS_app;.\UserModule\APP\time</IncludePath>
+              <IncludePath>.\User;.\Libraries\CMSIS;.\Libraries\STM32F10x_StdPeriph_Driver\inc;.\UserModule\APP\led;.\UserModule\APP\usart;.\UserModule\APP\I2c;.\UserModule\APP\time;.\UserModule\APP\1.69 TFTLCD ST7789V+CST816T;.\UserModule\Public;.\UserModule\FreeRTOS\include;.\UserModule\FreeRTOS\portable\RVDS\ARM_CM3;.\UserModule\FreeRTOS\FreeRTOS_app</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -392,15 +392,20 @@
               <FileType>1</FileType>
               <FilePath>.\User\stm32f10x_it.c</FilePath>
             </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Startup</GroupName>
-          <Files>
             <File>
               <FileName>startup_stm32f10x_hd.s</FileName>
               <FileType>2</FileType>
               <FilePath>.\Libraries\CMSIS\startup_stm32f10x_hd.s</FilePath>
+            </File>
+            <File>
+              <FileName>core_cm3.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Libraries\CMSIS\core_cm3.c</FilePath>
+            </File>
+            <File>
+              <FileName>system_stm32f10x.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Libraries\CMSIS\system_stm32f10x.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -437,20 +442,90 @@
               <FileType>1</FileType>
               <FilePath>.\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_usart.c</FilePath>
             </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>CMSIS</GroupName>
-          <Files>
             <File>
-              <FileName>system_stm32f10x.c</FileName>
+              <FileName>stm32f10x_adc.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\CMSIS\system_stm32f10x.c</FilePath>
+              <FilePath>.\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_adc.c</FilePath>
             </File>
             <File>
-              <FileName>core_cm3.c</FileName>
+              <FileName>stm32f10x_bkp.c</FileName>
               <FileType>1</FileType>
-              <FilePath>.\Libraries\CMSIS\core_cm3.c</FilePath>
+              <FilePath>.\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_bkp.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_can.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_can.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_cec.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_cec.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_crc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_crc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dac.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_dac.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dbgmcu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_dbgmcu.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_dma.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_dma.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_fsmc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_fsmc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_iwdg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_iwdg.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_pwr.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_pwr.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_rtc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_rtc.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_sdio.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_sdio.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f10x_wwdg.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Libraries\STM32F10x_StdPeriph_Driver\src\stm32f10x_wwdg.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -472,6 +547,21 @@
               <FileType>1</FileType>
               <FilePath>.\UserModule\APP\time\time6.c</FilePath>
             </File>
+            <File>
+              <FileName>cst816t.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\UserModule\APP\1.69 TFTLCD ST7789V+CST816T\cst816t.c</FilePath>
+            </File>
+            <File>
+              <FileName>st7789v.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\UserModule\APP\1.69 TFTLCD ST7789V+CST816T\st7789v.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\UserModule\APP\I2c\i2c.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -490,7 +580,7 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>FreeRTOS_core</GroupName>
+          <GroupName>FreeRTOS</GroupName>
           <Files>
             <File>
               <FileName>croutine.c</FileName>
@@ -522,11 +612,6 @@
               <FileType>1</FileType>
               <FilePath>.\UserModule\FreeRTOS\timers.c</FilePath>
             </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>FreeRTOS_port</GroupName>
-          <Files>
             <File>
               <FileName>heap_4.c</FileName>
               <FileType>1</FileType>

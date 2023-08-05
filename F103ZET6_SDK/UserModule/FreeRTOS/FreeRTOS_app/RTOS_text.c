@@ -74,26 +74,31 @@ void led1_task(void *pvParameters)
 {
     while(1)
     {
-        LED1=0;
-				printf("LED1-->0\r\n");
-        vTaskDelay(200);
-        LED1=1;
-				printf("LED1-->1\r\n");
+				LED1 = 1;
+				GPIO_ResetBits(LED2_PORT,LED2_PIN);
+				printf("LED2-->0\r\n");
         vTaskDelay(800);
+				LED1 = 0;
+				GPIO_SetBits(LED2_PORT,LED2_PIN);
+				printf("LED2-->1\r\n");
+        vTaskDelay(200);
     }
 }
 
 //LED2任务函数
+/*! 由于PB5管脚被使用，所以LED2用不了!*/
 void led2_task(void *pvParameters)
 {
     while(1)
     {
-        LED2=0;
-				printf("LED2-->0\r\n");
-        vTaskDelay(800);
-        LED2=1;
-				printf("LED2-->1\r\n");
+//				LED2 = 1;
+//				GPIO_ResetBits(LED1_PORT,LED1_PIN);
+				printf("LED1-->0\r\n");
         vTaskDelay(200);
+//				LED1 = 1;
+//				GPIO_SetBits(LED1_PORT,LED1_PIN);
+				printf("LED1-->1\r\n");
+        vTaskDelay(800);
     }
 }
 

@@ -8,7 +8,7 @@
 #ifndef _cst816t_H
 #define _cst816t_H
 
-#include "bit.h"
+#include "system.h"
 #include <stm32f10x.h>
 
 

@@ -33,7 +33,7 @@
 
 #ifdef I2C_SOFTWARE_ON
 
-#include "bit.h"
+#include "system.h"
 #include "SysTick.h"
 
 /*定义应答状态*/

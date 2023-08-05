@@ -12,9 +12,7 @@
 #define _st7789v_H
 
 #include <stm32f10x.h>
-#include "bit.h"     
-
-#define SPI_DMA 1
+#include "system.h"    
 
 /*上一次的传输数据长度*/
 extern uint16_t Tx_Len;
